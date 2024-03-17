@@ -1,0 +1,190 @@
+@media screen and (max-width: 320px) {
+    .login-box {
+        width: 90%;
+        border-radius: 20px;
+    }
+
+    .background-svg {
+        width: 80px;
+        height: 80px;
+    }
+
+    .form-control {
+        &__input-box {
+            height: 35px;
+
+            &__form-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        &__submit {
+            width: 180px;
+            height: 40px;
+        }
+    }
+
+    .registration-container {
+        &__form {
+            width: 90%;
+            border-radius: 20px;
+        }
+
+        &__avatar-box {
+            width: 90%;
+            border-radius: 20px;
+        }
+    }
+
+    .choose-box {
+        bottom: 4em;
+    }
+
+    .row-svg {
+        width: 40px;
+        height: 40px;
+    }
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 720px) {
+    .login-box {
+        width: 80%;
+        border-radius: 30px;
+    }
+
+    .background-svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .form-control {
+        &__input-box {
+            height: 40px;
+
+            &__form-icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        &__submit {
+            width: 180px;
+            height: 50px;
+        }
+    }
+
+    .registration-container {
+        &__form {
+            width: 80%;
+            border-radius: 20px;
+        }
+
+        &__avatar-box {
+            width: 80%;
+            border-radius: 20px;
+        }
+    }
+
+    .choose-box {
+        bottom: 4em;
+    }
+
+    .row-svg {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+@media screen and (min-width: 720px) and (max-width: 1024px) {
+    .login-box {
+        width: 80%;
+        border-radius: 30px;
+    }
+
+    .background-svg {
+        width: 140px;
+        height: 140px;
+    }
+
+    .form-control {
+        &__input-box {
+            height: 50px;
+
+            &__form-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        &__submit {
+            width: 200px;
+            height: 50px;
+        }
+    }
+
+    .registration-container {
+        &__form {
+            width: 80%;
+            border-radius: 20px;
+        }
+
+        &__avatar-box {
+            width: 80%;
+            border-radius: 20px;
+        }
+    }
+
+    .choose-box {
+        bottom: 4em;
+    }
+
+    .row-svg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .login-box {
+        width: 50%;
+        border-radius: 30px;
+    }
+
+    .background-svg {
+        width: 200px;
+        height: 200px;
+    }
+
+    .form-control {
+        &__input-box {
+            height: 55px;
+
+            &__form-icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        &__submit {
+            width: 220px;
+            height: 50px;
+        }
+    }
+
+    .registration-container {
+        &__form {
+            width: 30%;
+            border-radius: 30px;
+            margin-right: 4em;
+        }
+
+        &__avatar-box {
+            width: 30%;
+            border-radius: 30px;
+        }
+    }
+
+}

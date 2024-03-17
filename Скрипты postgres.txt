@@ -1,0 +1,381 @@
+ТРИГГЕРЫ
+=================================================================
+--Создание триггера на удаление любого комплектующего(кроме тех, которые связаны М:М), с последующим удалением сборки
+create or replace function assemb_delete()
+	returns trigger as 
+	$$
+		begin 
+			if TG_TABLE_NAME = 'motherboards'
+				then delete from assemblies where motherboard_id = old.id;
+			elsif TG_TABLE_NAME = 'cpus'
+				then delete from assemblies where CPU_id = old.id;
+			elsif TG_TABLE_NAME = 'cooling_systems' 
+				then delete from assemblies where cooling_system_id = old.id;
+			elsif TG_TABLE_NAME = 'power_supplies' 
+				then delete from assemblies where power_supplie_id = old.id;
+			elsif TG_TABLE_NAME = 'hulls' 
+				then delete from assemblies where hull_id = old.id;
+			else 
+				delete from assemb_RAM where assemblie_id = old.id;
+				delete from assemb_GPU where assemblie_id = old.id;
+				delete from assemb_disk where assemblie_id = old.id;
+			end if;
+		
+			return old;
+		end	
+	$$ language 'plpgsql';
+
+create trigger motherboard_delete
+	before delete on motherboards
+	for each row 
+	execute function assemb_delete();
+
+create trigger cpu_delete
+	before delete on cpus
+	for each row 
+	execute function assemb_delete();
+
+create trigger cooling_system_delete
+	before delete on cooling_systems
+	for each row 
+	execute function assemb_delete();
+
+create trigger power_supplie_delete
+	before delete on power_supplies
+	for each row 
+	execute function assemb_delete();
+
+create trigger hull_delete
+	before delete on hulls
+	for each row 
+	execute function assemb_delete();
+
+create trigger assemblie_delete
+	before delete on assemblies
+	for each row 
+	execute function assemb_delete();
+
+--Создаём триггер, который производит удаление для комплектующих с отношением М:М
+create or replace function hard_assemb_delete()
+	returns trigger as 
+	$$
+		declare 
+			assemb_id int;
+		begin 
+			if TG_TABLE_NAME = 'rams'
+				then 
+					for assemb_id in select assemblie_id from assemb_ram where RAM_id = old.id
+						loop 
+							delete from assemblies where id = assemb_id;
+						end loop;
+			elsif TG_TABLE_NAME = 'gpus'
+				then 
+					for assemb_id in select assemblie_id from assemb_gpu where GPU_id = old.id
+						loop 
+							delete from assemblies where id = assemb_id;
+						end loop;
+			else 
+				for assemb_id in select assemblie_id from assemb_disk where hard_disk_id = old.id
+					loop 
+						delete from assemblies where id = assemb_id;
+					end loop;
+			end if;	
+		
+			return old;
+		end	
+	$$ language 'plpgsql';
+
+create trigger ram_delete
+	before delete on rams
+	for each row 
+	execute function hard_assemb_delete();
+
+create trigger gpu_delete
+	before delete on gpus
+	for each row 
+	execute function hard_assemb_delete();
+
+create trigger hard_disk_delete
+	before delete on hard_disks
+	for each row 
+	execute function hard_assemb_delete();
+===========================================================================================================
+ТАБЛИЦЫ
+==================================================================
+
+--Автоинкрименты для всех таблиц
+CREATE SEQUENCE public.users_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.motherboards_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.cpus_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.rams_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.gpus_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.cooling_systems_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.power_supplies_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.hard_disks_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.hulls_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+CREATE SEQUENCE public.assemblies_increment
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+--Создаём тип для ролей пользоветалей
+create type user_role as ENUM('client', 'admin');
+
+--Создаём тип для статуса нового объекта
+create type item_status as ENUM('confirmation', 'accepted');
+
+--Таблица пользователей
+create table users
+(
+	id int not null primary key default nextval('users_increment'::regclass),
+	login varchar(40) not null,
+	password text not null,
+	token text not null,
+	last_date date not null,
+	role user_role not null,
+	avatar text
+);
+
+--Таблица с материнскими платами
+create table motherboards
+(
+	id int not null primary key default nextval('motherboards_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(100) not null,
+	form_factor varchar(20) not null,
+	power_connector varchar(30) not null,
+	socket varchar(40) not null,
+	chipset varchar(30) not null,
+	type_RAM varchar(20) not null, --ЧЕРЕЗ ЗАПЯТУЮ ВАЖНО
+	form_factor_RAM varchar(10) not null,
+	memory_frequency_specification int not null, --Считается в МГц
+	maximum_memory_size int not null, --Считается в Гб
+	all_slots text not null, --Перечисление всех слотов ЧЕРЕЗ ЗАПЯТУЮ ВАЖНО!!!
+	count_slots text not null, --Перечисление количества слотов ЧЕРЕЗ ЗАПЯТУЮ ВАЖНО!!!
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица с процессорами
+create table CPUs
+(
+	id int not null primary key default nextval('cpus_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(30) not null,
+	generation varchar(30) not null,
+	heat_generation varchar(40) not null, --Тепловыделение от мин-макс ВАЖНО ЧЕРЕЗ ТИРЕ в Вт
+	type_RAM varchar(20) not null, --ЧЕРЕЗ ЗАПЯТУЮ ВАЖНО!!!
+	memory_frequency_specification int not null, --Считается в МГц
+	maximum_memory_size int not null, --Считается в Гб
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица с оперативной памятью
+create table RAMs
+(
+	id int not null primary key default nextval('rams_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(30) not null,
+	type_RAM varchar(20) not null, --ЧЕРЕЗ ЗАПЯТУЮ ВАЖНО
+	form_factor_RAM varchar(10) not null,
+	memory_size int not null, --Считается в Гб
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица с видеокартами
+create table GPUs
+(
+	id int not null primary key default nextval('gpus_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(30) not null,
+	interface varchar(20) not null,
+	power_connector varchar(30) not null,
+	power_consumption int not null, --потребляемая мощность в Вт
+	length int not null, --высота в мм
+	width int not null, --ширина в мм
+	thickness int not null, --толщина в мм
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица с охлаждением
+create table cooling_systems
+(
+	id int not null primary key default nextval('cooling_systems_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(30) not null,
+	cooling_type varchar(40) not null,
+	max_heat_generation int not null, --Максимальное тепловыделение в Вт
+	socket_compatibility text not null, --Все сокеты, которые подходят ЧЕРЕЗ ЗАПЯТУЮ ВАЖНО!!!
+	power_consumption int not null, --потребляемая мощность в Вт
+	length int not null, --высота в мм
+	width int not null, --ширина в мм
+	thickness int not null, --толщина в мм
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица с блоками питания
+create table power_supplies
+(
+	id int not null primary key default nextval('power_supplies_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(30) not null,
+	power int not null, --мощность в Вт
+	form_factor varchar(20) not null,
+	motherboard_power_supply varchar(30) not null,
+	length int not null, --высота в мм
+	width int not null, --ширина в мм
+	thickness int not null, --толщина в мм
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица с жёсткими дисками
+create table hard_disks
+(
+	id int not null primary key default nextval('hard_disks_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(30) not null,
+	connector varchar(40) not null, --Разъём нужен для подключения к Материнской плате по типу SATA и другие
+	power_consumption int not null, --потребляемая мощность в Вт
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица с корпусами
+create table hulls
+(
+	id int not null primary key default nextval('hulls_increment'::regclass),
+	brand varchar(40) not null,
+	model varchar(30) not null,
+	form_factor varchar(20) not null, --для материнской платы
+	slots_count int not null, --количество слотов расширений для видеокарт
+	max_length_gpu int not null, --максимальная длина видеокарты в мм
+	max_height_culler int not null, --максимальная высота куллера в мм
+	length int not null, --высота в мм
+	width int not null, --ширина в мм
+	thickness int not null, --толщина в мм
+	price int not null, --Средняя стоимость в Руб.
+	status item_status not null, --Поля нужно для подтверждения достоверности нового объекта
+	unique(brand, model) -- Уникальный ключ по модели и бренду, чтобы не добавлять дубликаты
+);
+
+--Таблица со сборками
+create table assemblies
+(
+	id int not null primary key default nextval('assemblies_increment'::regclass),
+	motherboard_id int not null,
+	CPU_id int not null,
+	cooling_system_id int not null,
+	power_supplie_id int not null,
+	hull_id int not null,
+	user_id int not null,
+	name varchar(50) not null,
+	price int not null,--Средняя стоимость в Руб.
+	FOREIGN KEY (motherboard_id) REFERENCES motherboards (id),
+	FOREIGN KEY (CPU_id) REFERENCES CPUs (id),
+	FOREIGN KEY (cooling_system_id) REFERENCES cooling_systems (id),
+	FOREIGN KEY (power_supplie_id) references power_supplies (id),
+	FOREIGN KEY (hull_id) references hulls (id),
+	FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+--Таблица отношения М:М сборка+ОЗУ
+create table assemb_RAM
+(
+	assemblie_id int not null,
+	RAM_id int not null,
+	count int not null,--Кол-во плажек
+	FOREIGN KEY (assemblie_id) references assemblies (id),
+	FOREIGN KEY (RAM_id) REFERENCES RAMs (id)
+);
+
+--Таблица отношения М:М сборка+видеокарта
+create table assemb_GPU
+(
+	assemblie_id int not null,
+	GPU_id int not null,
+	count int not null,--Кол-во плажек
+	FOREIGN KEY (assemblie_id) references assemblies (id),
+	FOREIGN KEY (GPU_id) REFERENCES GPUs (id)
+);
+
+--Таблица отношения М:М сборка+жёсткий диск
+create table assemb_disk
+(
+	assemblie_id int not null,
+	hard_disk_id int not null,
+	count int not null,--Кол-во плажек
+	FOREIGN KEY (assemblie_id) references assemblies (id),
+	FOREIGN KEY (hard_disk_id) REFERENCES hard_disks (id)
+);
+
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+==============================================================================

@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import AppRouter from "./routes/Routes";
+
+import './global_styles/app.scss';
+import './global_styles/media.scss';
+import { createContext, useEffect } from "react";
+import { useState } from "react";
+
+export const AppContext = createContext();
 
 function App() {
+  const [deviceSize, setDeviceSize] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setDeviceSize(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AppContext.Provider
+        value={{ deviceSize }}
+      >
+        <AppRouter />
+      </AppContext.Provider>
+    </>
   );
 }
 
