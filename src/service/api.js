@@ -11,7 +11,7 @@ const BeatGTApi = axios.create({
 BeatGTApi.interceptors.request.use(
     (config) => {
         // Получаем JWT
-        const token = ''//Получение токена из loacalStorage;
+        const token = localStorage.getItem('jwtToken'); //Получение токена из loacalStorage;
         if (token) {
             // Если JWT существует, добавляем его в заголовки запроса
             config.headers['Authorization'] = `Bearer ${token}`;
@@ -28,6 +28,11 @@ BeatGTApi.interceptors.response.use(res => {
         localStorage.clear();
         window.location.pathname = '/home';
         return Promise.reject(res);
+    }
+    const newToken = res.headers['x-auth-token']; // Если пришёл, новый токен
+    if (newToken) {
+        // Если новый JWT пришел в ответе, сохраняем его в localStorage
+        localStorage.setItem('jwtToken', newToken);
     }
     return Promise.resolve(res.data || res);
 },
