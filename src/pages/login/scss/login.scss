@@ -28,5 +28,9 @@
     &__link-active{
         color: rgb(48, 0, 95);
     }
+
+    &__error-label{
+        @include media-text(red, 12pt, 16pt);
+    }
 }
 

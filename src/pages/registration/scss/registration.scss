@@ -31,6 +31,10 @@
         &_none {
             display: none;
         }
+
+        &__error-label{
+            @include media-text(red, 12pt, 16pt);
+        }
     }
 
     &__avatar-box {
@@ -46,6 +50,10 @@
 
         &_none {
             display: none;
+        }
+
+        &__error-label{
+            @include media-text(red, 12pt, 16pt);
         }
     }
 }
