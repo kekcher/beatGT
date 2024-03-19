@@ -1,0 +1,16 @@
+@import '../../../global_styles/constants.scss';
+
+.header-box {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background-color: $box-color;
+
+  &_logo {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
