@@ -2,6 +2,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import BackGroundSvg from "../../global_components/BackGroundSvg"
+import Loader from '../../global_components/Loader';
 import AvatarEditor from 'react-avatar-editor';
 import {
     FormControlLogin,
@@ -25,6 +26,7 @@ export default function Registration() {
 
     const avatarEditorRef = useRef(null);
 
+    const [load, setLoad] = useState(false);
     const [regStates, setRegStates] = useState({
         login: '',
         password: '',
@@ -39,6 +41,8 @@ export default function Registration() {
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        setLoad(true);
 
         const data = {
             login: regStates.login,
@@ -58,7 +62,7 @@ export default function Registration() {
                 })
             })
             .finally(_ => {
-                console.log('Тут бы ещё лоудера бы')
+                setLoad(false);
             });
     }
 
@@ -137,7 +141,16 @@ export default function Registration() {
                     <FormControlLogin onFocus={handleInputFocus} value={regStates.login} name="login" onChange={handleInputChange} />
                     <FormControlPswd onFocus={handleInputFocus} value={regStates.password} name="password" onChange={handleInputChange} placeholder='Введите пароль' />
                     <FormControlPswd onFocus={handleInputFocus} value={regStates.second_password} name="second_password" onChange={handleInputChange} placeholder='Повторите пароль' />
-                    <FormControlSubmit>Зарегистрироваться</FormControlSubmit>
+                    {
+                        load ?
+                            (
+                                <Loader />
+                            )
+                            :
+                            (
+                                <FormControlSubmit>Зарегистрироваться</FormControlSubmit>
+                            )
+                    }
                     {
                         regStates.regError && (
                             <p className='registration-container__form__error-label'>{regStates.regError}</p>

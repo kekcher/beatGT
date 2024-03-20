@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import BackGroundSvg from '../../global_components/BackGroundSvg';
+import Loader from '../../global_components/Loader';
 import { FormControlLogin, FormControlPswd, FormControlSubmit } from '../../global_components/form_control';
 import './scss/login.scss';
 import { useState, useContext } from 'react';
@@ -11,6 +12,7 @@ export default function Login() {
 
     const { navigate } = useContext(AppContext);
 
+    const [load, setLoad] = useState(false);
     const [loginStates, setLoginStates] = useState({
         login: '',
         password: '',
@@ -29,13 +31,16 @@ export default function Login() {
             setLoginStates({
                 login: '',
                 password: '',
-                error: null
+                error: null,
+                load: false
             })
         }
     }
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        setLoad(true);
 
         //Роут для входа
         const data = {
@@ -48,7 +53,6 @@ export default function Login() {
                 localStorage.setItem('user', JSON.stringify({ 'nickname': d.login, 'role': d.role, 'avatar': d.avatar }));
                 localStorage.setItem('jwtToken', d.token);
                 navigate('/home');
-
             })
             .catch(e => {
                 setLoginStates({
@@ -57,10 +61,8 @@ export default function Login() {
                 })
             })
             .finally(_ => {
-                console.log('Готово')
+                setLoad(false)
             })
-
-
     };
 
     return (
@@ -75,7 +77,16 @@ export default function Login() {
                         <p className='login-box__error-label'>{loginStates.error}</p>
                     )
                 }
-                <FormControlSubmit>Войти</FormControlSubmit>
+                {
+                    load ?
+                        (
+                            <Loader />
+                        )
+                        :
+                        (
+                            <FormControlSubmit>Войти</FormControlSubmit>
+                        )
+                }
                 <p className='login-box__link'>{'Нет аккаунта? Создайте его! '}<NavLink to="/registration" className="login-box__link-active">Перейти к регистрации</NavLink></p>
                 <NavLink className='login-box__link login-box__link-active' to="/home">На главную страницу</NavLink>
             </form>
