@@ -30,7 +30,7 @@
     }
 
     &__error-label{
-        @include media-text(red, 12pt, 16pt);
+        @include media-text($error-color, 12pt, 16pt);
     }
 }
 

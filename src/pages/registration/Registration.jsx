@@ -14,11 +14,14 @@ import {
 
 import AppSvg from '../../svg/AppSvg';
 import { AppContext } from '../../App';
+import { CreateUser } from '../../service/route';
+import { defaultAvatarUrl } from '../../constants';
 
 import "./scss/registration.scss";
 
 export default function Registration() {
-    const { deviceSize } = useContext(AppContext);
+
+    const { deviceSize, navigate } = useContext(AppContext);
 
     const avatarEditorRef = useRef(null);
 
@@ -27,6 +30,7 @@ export default function Registration() {
         password: '',
         second_password: '',
         avatar: null,
+        avatarSave: null,
         avatarScale: 2,
         regWindow: true,
         avatarError: null,
@@ -36,7 +40,26 @@ export default function Registration() {
     function handleSubmit(e) {
         e.preventDefault();
 
+        const data = {
+            login: regStates.login,
+            password: regStates.password,
+            second_password: regStates.second_password,
+            avatarUrl: sessionStorage.getItem('avatar') || defaultAvatarUrl
+        }
         //Роут регистрации
+        CreateUser(data)
+            .then(_ => {
+                navigate('/login');
+            })
+            .catch(e => {
+                setRegStates({
+                    ...regStates,
+                    regError: e.error
+                })
+            })
+            .finally(_ => {
+                console.log('Тут бы ещё лоудера бы')
+            });
     }
 
     function handleSaveAvatar() {
@@ -46,6 +69,11 @@ export default function Registration() {
 
             //Закидываем в sessionStorage
             sessionStorage.setItem('avatar', avatarURL);
+
+            setRegStates({
+                ...regStates,
+                avatarSave: 'Фото сохранено!'
+            })
         }
     }
 
@@ -53,13 +81,15 @@ export default function Registration() {
         if (!e.target.files.length) {
             setRegStates({
                 ...regStates,
-                avatar: null
+                avatar: null,
+                avatarSave: null
             })
         } else {
             const file_type = e.target.files[0].type;
             setRegStates({
                 ...regStates,
                 avatar: file_type.includes('image') ? e.target.files[0] : null,
+                avatarSave: null,
                 avatarScale: 2,
                 avatarError: file_type.includes('image') ? null : 'Загружать можно только фото!'
             })
@@ -81,6 +111,7 @@ export default function Registration() {
                 second_password: '',
                 regError: null
             })
+            sessionStorage.clear();
         }
     }
 
@@ -138,6 +169,11 @@ export default function Registration() {
                         )
                     }
                     <FormControlSubmitBtn onClick={handleSaveAvatar}>Сохранить</FormControlSubmitBtn>
+                    {
+                        regStates.avatarSave && (
+                            <p className='registration-container__avatar-box__note'>{regStates.avatarSave}</p>
+                        )
+                    }
                 </div>
             </div>
             {

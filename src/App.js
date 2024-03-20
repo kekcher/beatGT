@@ -1,5 +1,7 @@
 import AppRouter from "./routes/Routes";
 
+import {useNavigate, useLocation} from "react-router-dom";
+
 import './global_styles/app.scss';
 import './global_styles/media.scss';
 import { createContext, useEffect } from "react";
@@ -9,6 +11,8 @@ export const AppContext = createContext();
 
 function App() {
   const [deviceSize, setDeviceSize] = useState(window.innerWidth);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     function handleResize() {
@@ -23,7 +27,7 @@ function App() {
   return (
     <>
       <AppContext.Provider
-        value={{ deviceSize }}
+        value={{ deviceSize, navigate, location }}
       >
         <AppRouter />
       </AppContext.Provider>

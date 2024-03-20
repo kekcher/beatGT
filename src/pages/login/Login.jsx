@@ -2,9 +2,14 @@ import { NavLink } from 'react-router-dom';
 import BackGroundSvg from '../../global_components/BackGroundSvg';
 import { FormControlLogin, FormControlPswd, FormControlSubmit } from '../../global_components/form_control';
 import './scss/login.scss';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AppContext } from '../../App';
+
+import { AuthUser } from '../../service/route';
 
 export default function Login() {
+
+    const { navigate } = useContext(AppContext);
 
     const [loginStates, setLoginStates] = useState({
         login: '',
@@ -33,7 +38,30 @@ export default function Login() {
         e.preventDefault();
 
         //Роут для входа
-    }
+        const data = {
+            login: loginStates.login,
+            password: loginStates.password
+        };
+
+        AuthUser(data)
+            .then(d => {
+                localStorage.setItem('user', JSON.stringify({ 'nickname': d.login, 'role': d.role, 'avatar': d.avatar }));
+                localStorage.setItem('jwtToken', d.token);
+                navigate('/home');
+
+            })
+            .catch(e => {
+                setLoginStates({
+                    ...loginStates,
+                    error: e.error
+                })
+            })
+            .finally(_ => {
+                console.log('Готово')
+            })
+
+
+    };
 
     return (
         <>
@@ -41,7 +69,7 @@ export default function Login() {
             <form className='login-box' onSubmit={handleSubmit}>
                 <h1 className='login-box__note'>Добро пожаловать в конфигуратор компьютера BeatGT!</h1>
                 <FormControlLogin onFocus={handleInputFocus} value={loginStates.login} name="login" onChange={handleInputChange} />
-                <FormControlPswd onFocus={handleInputFocus} value={loginStates.password}  name="password" onChange={handleInputChange} placeholder="Введите пароль" />
+                <FormControlPswd onFocus={handleInputFocus} value={loginStates.password} name="password" onChange={handleInputChange} placeholder="Введите пароль" />
                 {
                     loginStates.error && (
                         <p className='login-box__error-label'>{loginStates.error}</p>

@@ -32,8 +32,9 @@
             display: none;
         }
 
-        &__error-label{
-            @include media-text(red, 12pt, 16pt);
+        &__error-label {
+            text-align: center;
+            @include media-text($error-color, 12pt, 16pt);
         }
     }
 
@@ -52,9 +53,16 @@
             display: none;
         }
 
-        &__error-label{
+        &__error-label {
+            text-align: center;
             @include media-text(red, 12pt, 16pt);
         }
+
+        &__note {
+            text-align: center;
+            @include media-text(white, 12pt, 16pt);
+        }
+
     }
 }
 
