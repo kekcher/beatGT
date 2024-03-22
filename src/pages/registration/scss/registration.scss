@@ -28,10 +28,6 @@
             color: rgb(48, 0, 95);
         }
 
-        &_none {
-            display: none;
-        }
-
         &__error-label {
             text-align: center;
             @include media-text($error-color, 12pt, 16pt);
@@ -48,10 +44,6 @@
         -moz-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
         box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
         padding: 0 20px;
-
-        &_none {
-            display: none;
-        }
 
         &__error-label {
             text-align: center;

@@ -23,8 +23,10 @@ BeatGTApi.interceptors.request.use(
     }
 );
 
-BeatGTApi.interceptors.response.use(res => {
-    const newToken = res.headers['x-auth-token']; // Если пришёл, новый токен
+BeatGTApi.interceptors.response.use((res) => {    
+    
+    const newToken = res.headers.get('x-auth-token'); // Если пришёл, новый токен
+    
     if (newToken) {
         // Если новый JWT пришел в ответе, сохраняем его в localStorage
         localStorage.setItem('jwtToken', newToken);
@@ -32,6 +34,7 @@ BeatGTApi.interceptors.response.use(res => {
     return Promise.resolve(res.data || res);
 },
     (error) => {
+        console.log(error)
         if (error.response.status === 401) {
             localStorage.clear();
             window.location.pathname = '/home';

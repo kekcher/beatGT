@@ -98,6 +98,10 @@ body {
     transform: translate(-50%, 0);
 }
 
+.none{
+    display: none;
+}
+
 @keyframes loader_wheel {
     0% {
         transform: rotate(0);
