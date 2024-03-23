@@ -1,16 +1,15 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import BackGroundSvg from '../../global_components/BackGroundSvg';
-import Loader from '../../global_components/Loader';
+import {Loader} from '../../global_components/Loader';
 import { FormControlLogin, FormControlPswd, FormControlSubmit } from '../../global_components/form_control';
 import './scss/login.scss';
-import { useState, useContext } from 'react';
-import { AppContext } from '../../App';
+import { useState } from 'react';
 
 import { AuthUser } from '../../service/route';
 
 export default function Login() {
 
-    const { navigate } = useContext(AppContext);
+    const navigate = useNavigate();
 
     const [load, setLoad] = useState(false);
     const [loginStates, setLoginStates] = useState({

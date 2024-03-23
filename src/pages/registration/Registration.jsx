@@ -1,8 +1,8 @@
 
 import React, { useContext, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import BackGroundSvg from "../../global_components/BackGroundSvg"
-import Loader from '../../global_components/Loader';
+import {Loader} from '../../global_components/Loader';
 import AvatarEditor from 'react-avatar-editor';
 import {
     FormControlLogin,
@@ -22,7 +22,9 @@ import "./scss/registration.scss";
 
 export default function Registration() {
 
-    const { deviceSize, navigate } = useContext(AppContext);
+    const { deviceSize } = useContext(AppContext);
+
+    const navigate = useNavigate();
 
     const avatarEditorRef = useRef(null);
 

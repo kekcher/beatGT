@@ -12,9 +12,7 @@
         @include media-text(white, 20pt, 32pt);
         background-color: $box-color;
         border-radius: 10px;
-        -webkit-box-shadow: 1px 7px 6px 7px rgba(255, 255, 255, 0.2);
-        -moz-box-shadow: 1px 7px 6px 7px rgba(255, 255, 255, 0.2);
-        box-shadow: 1px 7px 6px 7px rgba(255, 255, 255, 0.2);
+        @include shadow-box(1px, 7px, 6px, 7px, rgba(255, 255, 255, 0.2));
     }
 
     &_note-box {
@@ -23,9 +21,7 @@
         height: fit-content;
         max-height: 55%;
         border-radius: 20px;
-        -webkit-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
-        -moz-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
-        box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
+        @include shadow-box(1px, 9px, 8px, 9px, rgba(255, 255, 255, 0.2));
 
         &>li {
             @include flex-row;
@@ -41,16 +37,22 @@
         }
     }
 
+    &__back-btn {
+        background-color: $for-form;
+        @include media-text(white, 12pt, 20pt);
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
     &_logo-box {
         @include flex-center-center;
         background-color: $box-color;
         border-radius: 20px;
         height: calc(100vh - 50%);
-        -webkit-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
-        -moz-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
-        box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
+        @include shadow-box(1px, 9px, 8px, 9px, rgba(255, 255, 255, 0.2));
 
-        &__logo{
+        &__logo {
             max-height: 100%;
             max-width: 100%;
             border-radius: 20px;

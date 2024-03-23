@@ -61,6 +61,22 @@
         }
     }
 
+    .page-loader-container {
+        &_loader-box {
+            width: 60px;
+            height: 60px;
+
+            &__icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+        }
+    }
+
     .pc-component-container {
         &__head {
             padding: 15px;
@@ -84,6 +100,10 @@
             padding: 20px;
             width: 90%;
         }
+    }
+
+    .notfound-box {
+        width: 80%;
     }
 
 }
@@ -148,6 +168,22 @@
         }
     }
 
+    .page-loader-container {
+        &_loader-box {
+            width: 90px;
+            height: 90px;
+
+            &__icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+        }
+    }
+
     .pc-component-container {
         &__head {
             padding: 20px;
@@ -171,6 +207,10 @@
             padding: 20px;
             width: 90%;
         }
+    }
+
+    .notfound-box {
+        width: 80%;
     }
 }
 
@@ -234,6 +274,23 @@
         }
     }
 
+    .page-loader-container {
+        &_loader-box {
+            width: 110px;
+            height: 110px;
+
+            &__icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+            margin-left: 20px;
+        }
+    }
+
     .pc-component-container {
         &__head {
             padding: 20px;
@@ -257,6 +314,10 @@
             padding: 20px;
             width: 90%;
         }
+    }
+
+    .notfound-box {
+        width: 60%;
     }
 
 }
@@ -321,6 +382,23 @@
         }
     }
 
+    .page-loader-container {
+        &_loader-box {
+            width: 150px;
+            height: 150px;
+
+            &__icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+            margin-left: 20px;
+        }
+    }
+
     .pc-component-container {
         &__head {
             padding: 20px;
@@ -345,6 +423,10 @@
             width: 35%;
             margin-left: 2em;
         }
+    }
+
+    .notfound-box {
+        width: 50%;
     }
 }
 
@@ -400,6 +482,23 @@
         }
     }
 
+    .page-loader-container {
+        &_loader-box {
+            width: 150px;
+            height: 150px;
+
+            &__icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+            margin-left: 20px;
+        }
+    }
+
     .pc-component-container {
         &__head {
             padding: 20px;
@@ -424,6 +523,10 @@
             width: 40%;
             margin-left: 4em;
         }
+    }
+
+    .notfound-box {
+        width: 40%;
     }
 
 }
