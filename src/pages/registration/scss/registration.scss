@@ -28,12 +28,9 @@
             color: rgb(48, 0, 95);
         }
 
-        &_none {
-            display: none;
-        }
-
-        &__error-label{
-            @include media-text(red, 12pt, 16pt);
+        &__error-label {
+            text-align: center;
+            @include media-text($error-color, 12pt, 16pt);
         }
     }
 
@@ -41,27 +38,21 @@
         @include flex-column-around-center;
         background-color: $box-color;
         height: calc(100vh - 40%);
-        width: 30%;
         z-index: 10;
         -webkit-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
         -moz-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
         box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
         padding: 0 20px;
 
-        &_none {
-            display: none;
-        }
-
-        &__error-label{
+        &__error-label {
+            text-align: center;
             @include media-text(red, 12pt, 16pt);
         }
-    }
-}
 
-.choose-box {
-    @include flex-row;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 10;
+        &__note {
+            text-align: center;
+            @include media-text(white, 12pt, 16pt);
+        }
+
+    }
 }

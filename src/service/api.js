@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BeatGTApi = axios.create({
-    baseURL: '',//Здесь путь до бэка, 
+    baseURL: process.env.REACT_APP_BACKEND,//Здесь путь до бэка, 
     headers: {
         'Content-Type': 'application/json',
     }
@@ -23,22 +23,24 @@ BeatGTApi.interceptors.request.use(
     }
 );
 
-BeatGTApi.interceptors.response.use(res => {
-    if (res.status === 401) {
-        localStorage.clear();
-        window.location.pathname = '/home';
-        return Promise.reject(res);
-    }
-    const newToken = res.headers['x-auth-token']; // Если пришёл, новый токен
+BeatGTApi.interceptors.response.use((res) => {    
+    
+    const newToken = res.headers.get('x-auth-token'); // Если пришёл, новый токен
+    
     if (newToken) {
         // Если новый JWT пришел в ответе, сохраняем его в localStorage
         localStorage.setItem('jwtToken', newToken);
-    }
+    };
     return Promise.resolve(res.data || res);
 },
     (error) => {
-        localStorage.clear();
-        window.location.pathname = '/home';
-        return Promise.reject(error);
+        console.log(error)
+        if (error.response.status === 401) {
+            localStorage.clear();
+            window.location.pathname = '/home';
+        }
+        return Promise.reject(error.response.data);
     }
 );
+
+export default BeatGTApi;

@@ -1,3 +1,6 @@
+@import "../global_styles/constants.scss";
+@import "../global_styles/mixins.scss";
+
 @media screen and (max-width: 320px) {
     .login-box {
         width: 90%;
@@ -32,7 +35,7 @@
         }
 
         &__avatar-box {
-            width: 90%;
+            width: 80%;
             border-radius: 20px;
         }
     }
@@ -46,6 +49,63 @@
         height: 40px;
     }
 
+    .loader-container {
+        &_loader-box {
+            width: 40px;
+            height: 40px;
+
+            &__icon {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+
+    .page-loader-container {
+        &_loader-box {
+            width: 60px;
+            height: 60px;
+
+            &__icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+        }
+    }
+
+    .pc-component-container {
+        &__head {
+            padding: 15px;
+        }
+
+        &_note-box {
+            width: 90%;
+            overflow: auto;
+            padding: 15px;
+
+            &>li {
+                margin-bottom: 10px;
+            }
+
+            &__note-item {
+                margin-left: 5px;
+            }
+        }
+
+        &_logo-box {
+            padding: 20px;
+            width: 90%;
+        }
+    }
+
+    .notfound-box {
+        width: 80%;
+    }
+
 }
 
 @media screen and (min-width: 320px) and (max-width: 540px) {
@@ -96,56 +156,62 @@
         height: 50px;
     }
 
-}
-
-@media screen and (min-width: 320px) and (max-width: 540px) {
-    .login-box {
-        width: 80%;
-        border-radius: 30px;
-    }
-
-    .background-svg {
-        width: 80px;
-        height: 80px;
-    }
-
-    .form-control {
-        &__input-box {
+    .loader-container {
+        &_loader-box {
+            width: 50px;
             height: 50px;
 
-            &__form-icon {
+            &__icon {
+                width: 15px;
+                height: 15px;
+            }
+        }
+    }
+
+    .page-loader-container {
+        &_loader-box {
+            width: 90px;
+            height: 90px;
+
+            &__icon {
                 width: 30px;
                 height: 30px;
             }
         }
 
-        &__submit {
-            width: 200px;
-            height: 50px;
-        }
-    }
-
-    .registration-container {
-        &__form {
+        &__note {
             width: 80%;
-            border-radius: 20px;
-        }
-
-        &__avatar-box {
-            width: 80%;
-            border-radius: 20px;
         }
     }
 
-    .choose-box {
-        bottom: 4em;
+    .pc-component-container {
+        &__head {
+            padding: 20px;
+        }
+
+        &_note-box {
+            width: 90%;
+            overflow: auto;
+            padding: 20px;
+
+            &>li {
+                margin-bottom: 15px;
+            }
+
+            &__note-item {
+                margin-left: 8px;
+            }
+        }
+
+        &_logo-box {
+            padding: 20px;
+            width: 90%;
+        }
     }
 
-    .row-svg {
-        width: 50px;
-        height: 50px;
+    .notfound-box {
+        width: 80%;
     }
-
 }
 
 @media screen and (min-width: 540px) and (max-width: 720px) {
@@ -196,6 +262,64 @@
         height: 50px;
     }
 
+    .loader-container {
+        &_loader-box {
+            width: 60px;
+            height: 60px;
+
+            &__icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    .page-loader-container {
+        &_loader-box {
+            width: 110px;
+            height: 110px;
+
+            &__icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+            margin-left: 20px;
+        }
+    }
+
+    .pc-component-container {
+        &__head {
+            padding: 20px;
+        }
+
+        &_note-box {
+            width: 80%;
+            overflow: auto;
+            padding: 20px;
+
+            &>li {
+                margin-bottom: 15px;
+            }
+
+            &__note-item {
+                margin-left: 8px;
+            }
+        }
+
+        &_logo-box {
+            padding: 20px;
+            width: 90%;
+        }
+    }
+
+    .notfound-box {
+        width: 60%;
+    }
+
 }
 
 @media screen and (min-width: 720px) and (max-width: 1024px) {
@@ -227,23 +351,84 @@
 
     .registration-container {
         &__form {
-            width: 80%;
+            width: 40%;
             border-radius: 20px;
         }
 
         &__avatar-box {
-            width: 80%;
+            width: 50%;
             border-radius: 20px;
+            margin-left: 20px;
         }
     }
 
     .choose-box {
         bottom: 4em;
+        display: none;
     }
 
     .row-svg {
         width: 50px;
         height: 50px;
+    }
+
+    .loader-container {
+        &_loader-box {
+            width: 70px;
+            height: 70px;
+
+            &__icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+
+    .page-loader-container {
+        &_loader-box {
+            width: 150px;
+            height: 150px;
+
+            &__icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+            margin-left: 20px;
+        }
+    }
+
+    .pc-component-container {
+        &__head {
+            padding: 20px;
+        }
+
+        &_note-box {
+            width: 50%;
+            overflow: auto;
+            padding: 20px;
+
+            &>li {
+                margin-bottom: 15px;
+            }
+
+            &__note-item {
+                margin-left: 8px;
+            }
+        }
+
+        &_logo-box {
+            padding: 20px;
+            width: 35%;
+            margin-left: 2em;
+        }
+    }
+
+    .notfound-box {
+        width: 50%;
     }
 }
 
@@ -285,6 +470,70 @@
             width: 30%;
             border-radius: 30px;
         }
+    }
+
+    .choose-box{
+        display: none;
+        border: 1px solid black;
+    }
+
+    .loader-container {
+        &_loader-box {
+            width: 80px;
+            height: 80px;
+
+            &__icon {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+
+    .page-loader-container {
+        &_loader-box {
+            width: 150px;
+            height: 150px;
+
+            &__icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        &__note {
+            width: 80%;
+            margin-left: 20px;
+        }
+    }
+
+    .pc-component-container {
+        &__head {
+            padding: 20px;
+        }
+
+        &_note-box {
+            width: 50%;
+            overflow: auto;
+            padding: 30px 20px;
+
+            &>li {
+                margin-bottom: 20px;
+            }
+
+            &__note-item {
+                margin-left: 10px;
+            }
+        }
+
+        &_logo-box {
+            padding: 40px;
+            width: 40%;
+            margin-left: 4em;
+        }
+    }
+
+    .notfound-box {
+        width: 40%;
     }
 
 }

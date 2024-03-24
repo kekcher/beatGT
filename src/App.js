@@ -8,26 +8,39 @@ import { useState } from "react";
 export const AppContext = createContext();
 
 function App() {
-  const [deviceSize, setDeviceSize] = useState(window.innerWidth);
+  const [deviceSize, setDeviceSize] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
 
   useEffect(() => {
+    let isMounted = true;
+
     function handleResize() {
-      setDeviceSize(window.innerWidth);
+      if (isMounted) {
+        if(window.innerWidth < 724 && window.innerWidth > 700){
+          setDeviceSize(window.innerWidth)
+        }
+      }
     }
 
-    window.addEventListener('resize', handleResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+      handleResize(); // Вызываем handleResize сразу, чтобы установить начальный размер устройства
+    }
 
-    return () => window.removeEventListener('resize', handleResize);
+    // Функция-очистка
+    return () => {
+      isMounted = false;
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
+    };
   }, []);
 
   return (
-    <>
-      <AppContext.Provider
-        value={{ deviceSize }}
-      >
-        <AppRouter />
-      </AppContext.Provider>
-    </>
+    <AppContext.Provider
+      value={{ deviceSize }}
+    >
+      <AppRouter />
+    </AppContext.Provider>
   );
 }
 

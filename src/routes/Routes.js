@@ -1,16 +1,25 @@
-import { Routes, Route } from 'react-router-dom';
-import Login from '../pages/login/Login';
-import Registration from '../pages/registration/Registration';
-import Home from '../pages/home/Home';
-import CreateAssemb from '../pages/create_assemb/Create_assemb';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import Login from "../pages/login/Login";
+import Registration from "../pages/registration/Registration";
+import Component from "../pages/pc_component/Component";
+import NotFound from "../pages/not_found/NotFound";
+import { ComponentLoader } from "../pages/pc_component/Component";
 
 export default function AppRouter() {
-  return (
-    <Routes>
-      <Route index path="/home" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/create_assemb" element={<CreateAssemb />} />
-    </Routes>
-  );
+
+    const router = createBrowserRouter(createRoutesFromElements(
+        <>
+            <Route index path="/home" element={<button>ffaf</button>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/component" element={<Component />} loader={ComponentLoader}/>
+            <Route path="/*" element={<NotFound >Страница не найдена!</NotFound>} />
+        </>
+    ))
+
+    return (
+        <>
+            <RouterProvider router={router} />
+        </>
+    );
 }

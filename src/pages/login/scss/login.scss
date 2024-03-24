@@ -10,9 +10,7 @@
     transform: translate(-50%, -50%);
     height: calc(100vh - 40%);
     z-index: 10;
-    -webkit-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
-    -moz-box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
-    box-shadow: 1px 9px 8px 9px rgba(255, 255, 255, 0.2);
+    @include shadow-box(1px, 9px, 8px, 9px, rgba(255, 255, 255, 0.2));
     padding: 0 20px;
 
     &__note {
@@ -30,7 +28,7 @@
     }
 
     &__error-label{
-        @include media-text(red, 12pt, 16pt);
+        @include media-text($error-color, 12pt, 16pt);
     }
 }
 
