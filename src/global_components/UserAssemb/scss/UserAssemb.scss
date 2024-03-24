@@ -1,8 +1,8 @@
 @import '../../../global_styles/constants.scss';
+@import '../../../global_styles/mixins.scss';
 
 .user-assemb-box {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   position: relative;
   left: 0;
   width: 550px;
@@ -12,9 +12,8 @@
   overflow: hidden;
 
   &_top {
-    display: flex;
+    @include flex-row;
     height: 80%;
-    flex-direction: row;
     position: relative;
 
     &__img {
@@ -26,9 +25,7 @@
     }
 
     &__mid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex-center-center;
 
       &__name {
         color: white;
@@ -51,10 +48,8 @@
     }
 
     &__right {
+      @include flex-column-center;
       position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       margin: 20px 25px;
       right: 0;
 

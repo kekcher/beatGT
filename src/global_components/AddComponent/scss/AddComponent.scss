@@ -1,8 +1,8 @@
 @import '../../../global_styles/constants.scss';
+@import '../../../global_styles/mixins.scss';
 
 .AddComponent-box {
-  display: flex;
-  flex-direction: row;
+  @include flex-row;
   position: relative;
   left: 0;
   width: 400px;

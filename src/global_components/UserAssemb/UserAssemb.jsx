@@ -2,7 +2,7 @@ import React from 'react';
 import AppSvg from '../../svg/AppSvg';
 import './scss/UserAssemb.scss';
 
-const UserAssemb = ({ imgSrc, name, price, likes, comments }) => {
+const UserAssemb = ({ imgSrc, name, price, likes }) => {
   const [like, setLike] = React.useState(false);
   const [data, setData] = React.useState({
     cpu: 'cpuaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
@@ -62,10 +62,6 @@ const UserAssemb = ({ imgSrc, name, price, likes, comments }) => {
             type={like ? 'like-set' : 'like'}
           />
           {likes > 0 ? <p className="user-assemb-box_bottom__cont__count">{likes}</p> : null}
-        </div>
-        <div className="user-assemb-box_bottom__cont">
-          <AppSvg className="comment-svg" type="comment" />
-          {comments > 0 ? <p className="user-assemb-box_bottom__cont__count">{comments}</p> : null}
         </div>
       </div>
     </div>

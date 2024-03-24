@@ -32,16 +32,7 @@ export default function Home() {
           {assemb
             .slice(numberOfRecordsVistited, numberOfRecordsVistited + cardsPerPage)
             .map((pc, key_) => {
-              return (
-                <UserAssemb
-                  key={key_}
-                  imgSrc={assembJpg}
-                  name={pc}
-                  price={999}
-                  likes={3}
-                  comments={25}
-                />
-              );
+              return <UserAssemb key={key_} />;
             })}
           <ReactPaginate
             breakLabel="..."

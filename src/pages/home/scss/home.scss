@@ -1,14 +1,11 @@
 @import '../../../global_styles/constants.scss';
+@import '../../../global_styles/mixins.scss';
 
 .home-box {
-  display: flex;
-  justify-content: start;
+  @include flex-center-center;
   position: absolute;
   left: 0;
   top: 150px;
-  display: flex;
-  justify-content: center;
-  align-self: center;
   width: 100%;
   height: 100vh;
   padding: 10px 20px;
@@ -23,9 +20,7 @@
     font-size: 24px;
   }
   &_cont {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    @include flex-row-wrap;
     position: absolute;
     left: 0;
     margin: 40px;
@@ -34,11 +29,10 @@
 }
 
 .navigationButtons {
+  @include flex-center;
   width: 80%;
   height: 40px;
   list-style: none;
-  display: flex;
-  justify-content: center;
   margin: auto;
   padding-top: 20px;
   margin-bottom: 70px;
