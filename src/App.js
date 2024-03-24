@@ -15,7 +15,9 @@ function App() {
 
     function handleResize() {
       if (isMounted) {
-        setDeviceSize(window.innerWidth);
+        if(window.innerWidth < 724 && window.innerWidth > 700){
+          setDeviceSize(window.innerWidth)
+        }
       }
     }
 

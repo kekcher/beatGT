@@ -2,7 +2,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import BackGroundSvg from "../../global_components/BackGroundSvg"
-import {Loader} from '../../global_components/Loader';
+import { Loader } from '../../global_components/Loader';
 import AvatarEditor from 'react-avatar-editor';
 import {
     FormControlLogin,
@@ -138,7 +138,7 @@ export default function Registration() {
         <>
             <BackGroundSvg />
             <div className='registration-container'>
-                <form onSubmit={handleSubmit} className={deviceSize < 1024 && !regStates.regWindow ? 'none' : 'registration-container__form'}>
+                <form onSubmit={handleSubmit} className={deviceSize < 720 && !regStates.regWindow ? 'none' : 'registration-container__form'}>
                     <h1 className='registration-container__form__note'>Регистрация</h1>
                     <FormControlLogin onFocus={handleInputFocus} value={regStates.login} name="login" onChange={handleInputChange} />
                     <FormControlPswd onFocus={handleInputFocus} value={regStates.password} name="password" onChange={handleInputChange} placeholder='Введите пароль' />
@@ -161,7 +161,7 @@ export default function Registration() {
                     <p className='registration-container__form__link'>{'Есть аккаунт? Войдите в него! '}<NavLink to="/login" className="registration-container__form__link-active">Перейти к входу</NavLink></p>
                     <NavLink className='registration-container__form__link registration-container__form__link-active' to="/home">На главную страницу</NavLink>
                 </form>
-                <div className={deviceSize < 1024 && regStates.regWindow ? 'none' : 'registration-container__avatar-box'}>
+                <div className={deviceSize < 720 && regStates.regWindow ? 'none' : 'registration-container__avatar-box'}>
                     <h1 className='registration-container__form__note'>Выберите аватар</h1>
                     <FormControlImage onChange={handleChangeAvatar}>{regStates.avatar?.name || 'Файл не выбран'}</FormControlImage>
                     {regStates.avatar && (
@@ -191,14 +191,12 @@ export default function Registration() {
                     }
                 </div>
             </div>
-            {
-                deviceSize < 1024 && (
-                    <div className='choose-box'>
-                        <AppSvg onClick={removeRegWindow} className="row-svg" type='left-row' />
-                        <AppSvg onClick={removeRegWindow} className="row-svg" type='right-row' />
-                    </div>
-                )
-            }
+
+            <div className='choose-box'>
+                <AppSvg onClick={removeRegWindow} className="row-svg" type='left-row' />
+                <AppSvg onClick={removeRegWindow} className="row-svg" type='right-row' />
+            </div>
+
         </>
     );
 } 

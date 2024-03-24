@@ -42,9 +42,11 @@ export default function Component() {
 
     const [compWindow, setCompWindow] = useState(true);
 
+    console.log(deviceSize)
+
     return (
         <div className="pc-component-container">
-            <Suspense  fallback={<PageLoader />}>
+            <Suspense fallback={<PageLoader />}>
                 <Await errorElement={<NotFound>Комплектующее не найдено!</NotFound>} resolve={infoData}>
                     {
                         (data) => (
@@ -69,14 +71,11 @@ export default function Component() {
                                 <div className={deviceSize < 720 && compWindow ? "none" : "pc-component-container_logo-box"}>
                                     <img className="pc-component-container_logo-box__logo" src={data['logo']} alt='нет' />
                                 </div>
-                                {
-                                    deviceSize < 720 && (
-                                        <div className='choose-box'>
-                                            <AppSvg onClick={() => setCompWindow(!compWindow)} className="row-svg" type='left-row' />
-                                            <AppSvg onClick={() => setCompWindow(!compWindow)} className="row-svg" type='right-row' />
-                                        </div>
-                                    )
-                                }
+
+                                <div className='choose-box'>
+                                    <AppSvg onClick={() => setCompWindow(!compWindow)} className="row-svg" type='left-row' />
+                                    <AppSvg onClick={() => setCompWindow(!compWindow)} className="row-svg" type='right-row' />
+                                </div>
                             </>
                         )
                     }

@@ -35,7 +35,7 @@
         }
 
         &__avatar-box {
-            width: 90%;
+            width: 80%;
             border-radius: 20px;
         }
     }
@@ -351,18 +351,20 @@
 
     .registration-container {
         &__form {
-            width: 80%;
+            width: 40%;
             border-radius: 20px;
         }
 
         &__avatar-box {
-            width: 80%;
+            width: 50%;
             border-radius: 20px;
+            margin-left: 20px;
         }
     }
 
     .choose-box {
         bottom: 4em;
+        display: none;
     }
 
     .row-svg {
@@ -468,6 +470,11 @@
             width: 30%;
             border-radius: 30px;
         }
+    }
+
+    .choose-box{
+        display: none;
+        border: 1px solid black;
     }
 
     .loader-container {

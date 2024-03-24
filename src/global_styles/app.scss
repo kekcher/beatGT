@@ -18,6 +18,14 @@ body {
     overflow: hidden;
 }
 
+.choose-box {
+    @include flex-row;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 10;
+}
+
 .background-svg {
     position: absolute;
     opacity: 0.5;
@@ -68,7 +76,7 @@ body {
         }
     }
 
-    &__note{
+    &__note {
         @include media-text(white, 12pt, 16pt);
         margin-left: 10px;
     }
@@ -93,7 +101,7 @@ body {
         }
     }
 
-    &__note{
+    &__note {
         @include media-text(white, 16pt, 96pt);
         margin-left: 10px;
     }
@@ -123,7 +131,7 @@ body {
     transform: translate(-50%, 0);
 }
 
-.none{
+.none {
     display: none;
 }
 
