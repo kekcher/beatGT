@@ -1,0 +1,71 @@
+@import '../../../global_styles/constants.scss';
+
+.home-box {
+  display: flex;
+  justify-content: start;
+  position: absolute;
+  left: 0;
+  top: 150px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+  height: 100vh;
+  padding: 10px 20px;
+  padding-bottom: 100px !important;
+  margin: 20px auto;
+  background-color: $back_color;
+  &_sign {
+    position: relative;
+    font-style: italic;
+    color: white;
+    font-weight: lighter;
+    font-size: 24px;
+  }
+  &_cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 0;
+    margin: 40px;
+    height: fit-content;
+  }
+}
+
+.navigationButtons {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding-top: 20px;
+  margin-bottom: 70px;
+}
+
+.navigationButtons a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: $btn-color;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navigationButtons a:hover {
+  color: white;
+  background-color: $btn-color;
+}
+
+.navigationActive a {
+  color: black;
+  background-color: $for-form;
+}
+
+.navigationDisabled a {
+  color: $gray;
+  background-color: $light-color;
+}

@@ -1,7 +1,12 @@
 @import '../../../global_styles/constants.scss';
 
 .header-box {
-  position: relative;
+  z-index: 1 !important;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 150px;
   background-color: $box-color;
@@ -12,5 +17,177 @@
     position: relative;
     top: 0;
     left: 0;
+  }
+
+  &_signs {
+    position: relative;
+    top: 30px;
+    left: 60px;
+
+    &__header {
+      font-size: 62px;
+      font-weight: bold;
+    }
+
+    &__under {
+      font-size: 26px;
+      color: $gray;
+    }
+  }
+
+  &_assemb-buttons {
+    position: relative;
+    left: 150px;
+    top: 45px;
+
+    &__btn {
+      cursor: pointer;
+      margin-right: 10px;
+      padding: 15px 15px;
+      border-radius: 3px;
+      box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+      line-height: 1.25;
+      background: $btn-color;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      transition: background-color 0.6s ease;
+      overflow: hidden;
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        top: var(--mouse-y);
+        left: var(--mouse-x);
+        transform-style: flat;
+        transform: translate3d(-50%, -50%, 0);
+        background: rgba(white, 0.1);
+        border-radius: 100%;
+        transition: width 0.3s ease, height 0.3s ease;
+      }
+      &:focus,
+      &:hover {
+        background: darken($btn-color, 7%);
+      }
+      &:active {
+        &:after {
+          width: 300px;
+          height: 300px;
+        }
+      }
+    }
+  }
+
+  &_user-buttons {
+    position: absolute;
+    right: 100px;
+    top: 45px;
+
+    &__btn {
+      cursor: pointer;
+      margin-right: 10px;
+      padding: 15px 10px;
+      border-radius: 3px;
+      box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+      line-height: 1.25;
+      background: white;
+      text-decoration: none;
+      color: $btn-color;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      transition: background-color 0.6s ease;
+      overflow: hidden;
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        top: var(--mouse-y);
+        left: var(--mouse-x);
+        transform-style: flat;
+        transform: translate3d(-50%, -50%, 0);
+        background: rgba(white, 0.1);
+        border-radius: 100%;
+        transition: width 0.3s ease, height 0.3s ease;
+      }
+      &:focus,
+      &:hover {
+        background: darken(white, 7%);
+      }
+      &:active {
+        &:after {
+          width: 300px;
+          height: 300px;
+        }
+      }
+    }
+  }
+
+  &_user-box {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    right: 150px;
+    top: 38px;
+
+    &__avatar {
+      cursor: pointer;
+      border: 2px white solid;
+      height: 75px;
+      width: 75px;
+      border-radius: 50%;
+      vertical-align: middle;
+      object-fit: cover;
+    }
+
+    &__nickname {
+      cursor: pointer;
+      color: $gray;
+      font-size: 24px;
+      margin-right: 16px;
+    }
+  }
+
+  &_user-options {
+    background-color: $btn-color;
+    width: 100px;
+    height: fit-content;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    right: 140px;
+    top: 110px;
+
+    &__lst {
+      list-style: none;
+
+      &__elmnt {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 100px;
+        height: fit-content;
+        color: white;
+        padding: 7px 0;
+        font-size: 16px;
+        border-bottom: 1px $gray solid;
+      }
+    }
   }
 }
