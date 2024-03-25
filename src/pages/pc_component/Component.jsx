@@ -59,7 +59,7 @@ export default function Component() {
                                             return (
                                                 <li key={idx}>
                                                     <p className="pc-component-container_note-box__note">{item['note']}</p>
-                                                    <p className="pc-component-container_note-box__note-item">{data[item['code_name']]}</p>
+                                                    <p className={item['code_name'] === 'status' ? data[item['code_name']] === 'accepted' ? "pc-component-container_note-box__note-item_green": "pc-component-container_note-box__note-item_red" : "pc-component-container_note-box__note-item"}>{data[item['code_name']]}</p>
                                                 </li>
                                             )
                                         })

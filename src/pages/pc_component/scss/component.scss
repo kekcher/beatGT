@@ -30,10 +30,19 @@
 
         &__note {
             @include media-text(white, 14pt, 26pt);
+            margin-right: 4px;
         }
 
         &__note-item {
             @include media-text($for-form, 14pt, 26pt);
+
+            &_green {
+                @include media-text($price-color, 14pt, 26pt);
+            }
+
+            &_red {
+                @include media-text($error-color, 14pt, 26pt);
+            }
         }
     }
 

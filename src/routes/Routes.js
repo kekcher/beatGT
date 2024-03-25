@@ -14,8 +14,8 @@ export default function AppRouter() {
             <Route index path="/home" element={<button>ffaf</button>} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
-            <Route path="/component" element={<Component />} loader={ComponentLoader} />
-            <Route path="/assembly" element={<Assembly />} loader={AssemblyLoader}/>
+            <Route path="/component" element={<Component />} errorElement={<NotFound>Комплектующее не найдено!</NotFound>} loader={ComponentLoader} />
+            <Route path="/assembly" element={<Assembly />} errorElement={<NotFound>Сборка не найдена!</NotFound>} loader={AssemblyLoader}/>
             <Route path="/*" element={<NotFound >Страница не найдена!</NotFound>} />
         </>
     ))

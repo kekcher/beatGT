@@ -16,21 +16,6 @@ import { AssemblyComponent } from './components/assembly_components';
 
 export const AssemblyLoader = async () => {
 
-    function getAllPrice(info) {
-        let result = 0;
-        Object.keys(info).forEach(item => {
-            if (info[item].length && typeof (info[item]) === 'object') {
-                info[item].forEach(d => {
-                    result += d?.price || 0;
-                })
-            } else {
-                result += info[item]?.price || 0
-            }
-        })
-        return result;
-    }
-
-
     const searchParams = new URLSearchParams(window.location.search);
 
     const id = searchParams.get('id');
@@ -39,14 +24,13 @@ export const AssemblyLoader = async () => {
 
 
     return defer({
-        assemblyInfo: assemblyInfo,
-        allPrice: getAllPrice(assemblyInfo)
+        assemblyInfo: assemblyInfo
     });
 }
 
 export default function Assembly() {
 
-    const { assemblyInfo, allPrice } = useLoaderData();
+    const { assemblyInfo} = useLoaderData();
 
     //Функция перехода на 
     function goComponent(id, type) {
@@ -103,7 +87,7 @@ export default function Assembly() {
                                 }
                             </ul>
                             <div className='assembly-box_footer-box'>
-                                <p className='assembly-box_footer-box__price'>Итого: {allPrice} Руб.</p>
+                                <p className='assembly-box_footer-box__price'>Итого: {data['price']} Руб.</p>
                                 <button className='assembly-box_footer-box__like-btn'>Понравилось</button>
                             </div>
                         </div>
