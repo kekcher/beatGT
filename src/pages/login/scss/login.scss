@@ -3,11 +3,8 @@
 
 .login-box {
     @include flex-column-around-center;
-    position: absolute;
+    @include absolute-center;
     background-color: $box-color;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     height: calc(100vh - 40%);
     z-index: 10;
     @include shadow-box(1px, 9px, 8px, 9px, rgba(255, 255, 255, 0.2));

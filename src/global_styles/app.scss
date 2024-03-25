@@ -18,6 +18,10 @@ body {
     overflow: hidden;
 }
 
+img {
+    object-fit: cover;
+}
+
 .choose-box {
     @include flex-row;
     position: absolute;

@@ -3,14 +3,14 @@ export const defaultAvatarUrl = 'aboba'
 
 //Объект шапки комплектующего type: Шапка
 export const component_header = {
-    motherboard : 'Материнская плата',
-    cpu : 'Процессор',
+    motherboard: 'Материнская плата',
+    cpu: 'Процессор',
     ram: 'Оперативная память',
     gpu: 'Видеокарта',
     cooler: 'Система охлаждения',
-    power_sypply: 'Блок питания',
+    power_supply: 'Блок питания',
     hard_disk: 'Жёсткий диск',
-    hull : 'Корпус'
+    hull: 'Корпус'
 }
 
 //Объект со всеми комплектющими, для удобства отрисовки
@@ -138,7 +138,7 @@ export const pc_components = {
                 note: 'Достоверность:'
             }
         ],
-    power_sypply:
+    power_supply:
         [
             {
                 code_name: 'brand',
@@ -213,3 +213,48 @@ export const pc_components = {
         ]
 
 }
+
+//Объект со сборкой для облегчения отрисовки
+export const assembly = [
+    {
+        type: 'motherboard',
+        code_name: 'motherboard',
+        note: 'Материнская плата '
+    },
+    {
+        type: 'cpu',
+        code_name: 'cpu',
+        note: 'Процессор '
+    },
+    {
+        type: 'ram',
+        code_name: 'rams',
+        note: 'Оперативная память '
+    },
+    {
+        type: 'gpu',
+        code_name: 'gpus',
+        note: 'Видеокарта '
+    },
+    {
+        type: 'cooler',
+        code_name: 'cooler',
+        note: 'Система охлаждения '
+    },
+    {
+        type: 'power_supply',
+        code_name: 'power_supply',
+        note: 'Блок питания '
+    },
+    {
+        type: 'hard_disk',
+        code_name: 'hard_disks',
+        note: 'Жёсткий диск '
+    },
+    {
+        type: 'hull',
+        code_name: 'hull',
+        note: 'Корпус '
+    }
+]
+

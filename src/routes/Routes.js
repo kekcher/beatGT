@@ -4,6 +4,8 @@ import Registration from "../pages/registration/Registration";
 import Component from "../pages/pc_component/Component";
 import NotFound from "../pages/not_found/NotFound";
 import { ComponentLoader } from "../pages/pc_component/Component";
+import Assembly from "../pages/assembly/Assembly";
+import { AssemblyLoader } from "../pages/assembly/Assembly";
 
 export default function AppRouter() {
 
@@ -12,7 +14,8 @@ export default function AppRouter() {
             <Route index path="/home" element={<button>ffaf</button>} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
-            <Route path="/component" element={<Component />} loader={ComponentLoader}/>
+            <Route path="/component" element={<Component />} loader={ComponentLoader} />
+            <Route path="/assembly" element={<Assembly />} loader={AssemblyLoader}/>
             <Route path="/*" element={<NotFound >Страница не найдена!</NotFound>} />
         </>
     ))

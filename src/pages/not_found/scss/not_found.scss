@@ -4,10 +4,7 @@
 
 .notfound-box {
     @include flex-column-around-center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    @include absolute-center;
     height: 60%;
     background-color: $box-color;
     border-radius: 20px;

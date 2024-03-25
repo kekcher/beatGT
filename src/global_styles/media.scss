@@ -106,6 +106,43 @@
         width: 80%;
     }
 
+    .assembly-box {
+        &_author-box {
+            margin-top: 10px;
+
+            &__avatar {
+                height: 30px;
+                width: 30px;
+            }
+        }
+
+        &_component-list {
+            margin: 10px 0;
+
+            &_row {
+                @include flex-column-none-center;
+
+                &__logo {
+                    width: 60px;
+                    height: 60px;
+                }
+
+                &__note {
+                    margin-top: 10px;
+                    text-align: center;
+                }
+            }
+        }
+
+        &_footer-box {
+            padding: 0 15px;
+
+            &__like-btn {
+                padding: 5px;
+            }
+        }
+    }
+
 }
 
 @media screen and (min-width: 320px) and (max-width: 540px) {
@@ -212,6 +249,44 @@
     .notfound-box {
         width: 80%;
     }
+
+    .assembly-box {
+        &_author-box {
+            margin-top: 0;
+
+            &__avatar {
+                height: 60px;
+                width: 60px;
+            }
+        }
+
+        &_component-list {
+            margin: 0;
+
+            &_row {
+                @include flex-column-none-center;
+
+                &__logo {
+                    width: 90px;
+                    height: 90px;
+                }
+
+                &__note {
+                    margin-top: 10px;
+                    text-align: center;
+                }
+            }
+        }
+
+        &_footer-box {
+            padding: 0 25px;
+
+            &__like-btn {
+                padding: 10px;
+            }
+        }
+    }
+
 }
 
 @media screen and (min-width: 540px) and (max-width: 720px) {
@@ -318,6 +393,48 @@
 
     .notfound-box {
         width: 60%;
+    }
+
+    .assembly-box {
+        &_author-box {
+            margin-top: 0;
+
+            &__avatar {
+                height: 70px;
+                width: 70px;
+            }
+        }
+
+        &_component-list {
+            margin: 0;
+
+            &_row {
+                position: relative;
+                @include flex-none-center;
+
+                &__logo {
+                    width: 100px;
+                    height: 100px;
+                }
+
+                &__note {
+                    max-width: 50%;
+                }
+
+                &_info-box {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+
+        &_footer-box {
+            padding: 0 25px;
+
+            &__like-btn {
+                padding: 15px;
+            }
+        }
     }
 
 }
@@ -430,6 +547,48 @@
     .notfound-box {
         width: 50%;
     }
+
+    .assembly-box {
+        &_author-box {
+            margin-top: 0;
+
+            &__avatar {
+                height: 80px;
+                width: 80px;
+            }
+        }
+
+        &_component-list {
+            margin: 10px 0;
+
+            &_row {
+                position: relative;
+                @include flex-none-center;
+
+                &__logo {
+                    width: 120px;
+                    height: 120px;
+                }
+
+                &__note {
+                    max-width: 60%;
+                }
+
+                &_info-box {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+
+        &_footer-box {
+            padding: 0 40px;
+
+            &__like-btn {
+                padding: 20px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -472,7 +631,7 @@
         }
     }
 
-    .choose-box{
+    .choose-box {
         display: none;
         border: 1px solid black;
     }
@@ -534,6 +693,48 @@
 
     .notfound-box {
         width: 40%;
+    }
+
+    .assembly-box {
+        &_author-box {
+            margin-top: 0;
+
+            &__avatar {
+                height: 80px;
+                width: 80px;
+            }
+        }
+
+        &_component-list {
+            margin: 20px 0;
+
+            &_row {
+                position: relative;
+                @include flex-none-center;
+
+                &__logo {
+                    width: 120px;
+                    height: 120px;
+                }
+
+                &__note {
+                    max-width: 80%;
+                }
+
+                &_info-box {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+
+        &_footer-box {
+            padding: 0 50px;
+
+            &__like-btn {
+                padding: 20px;
+            }
+        }
     }
 
 }

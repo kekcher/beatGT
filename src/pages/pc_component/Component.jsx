@@ -22,6 +22,7 @@ export const ComponentLoader = () => {
 
     const id = searchParams.get('id');
     const type = searchParams.get('type');
+    console.log(window.location)
 
     const componentInfo = GetComponent(id, type);
 
@@ -42,7 +43,6 @@ export default function Component() {
 
     const [compWindow, setCompWindow] = useState(true);
 
-    console.log(deviceSize)
 
     return (
         <div className="pc-component-container">
