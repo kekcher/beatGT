@@ -40,6 +40,13 @@
     align-items: center;
 }
 
+@mixin flex-column-center-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 @mixin flex-column-none-center{
     display: flex;
     flex-direction: column;

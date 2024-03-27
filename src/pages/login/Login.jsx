@@ -49,7 +49,7 @@ export default function Login() {
 
         AuthUser(data)
             .then(d => {
-                localStorage.setItem('user', JSON.stringify({ 'nickname': d.login, 'role': d.role, 'avatar': d.avatar }));
+                localStorage.setItem('user', JSON.stringify({ 'id': d.id, 'nickname': d.login, 'role': d.role, 'avatar': d.avatar }));
                 localStorage.setItem('jwtToken', d.token);
                 navigate('/home');
             })

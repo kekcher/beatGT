@@ -15,3 +15,11 @@ export function GetComponent(id = 0, type = '') {
 export function GetAssembly(id = 0) {
     return BeatGTApi.get(`/assembly/?id=${id}`);
 }
+
+export function postComponent(type = '', row = {}) {
+    return BeatGTApi.post('/create_component/', JSON.stringify({ type, row }));
+}
+
+export function assembLike(data){
+    return BeatGTApi.post('/assembly_like/', JSON.stringify(data))
+}

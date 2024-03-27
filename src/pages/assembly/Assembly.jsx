@@ -2,7 +2,7 @@ import './scss/assembly.scss';
 
 import { Await, defer, useLoaderData, useNavigate } from 'react-router-dom';
 
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 
 import { PageLoader } from '../../global_components/Loader';
 
@@ -13,6 +13,8 @@ import { assembly } from '../../constants'
 import { GetAssembly } from '../../service/route';
 
 import { AssemblyComponent } from './components/assembly_components';
+
+import { assembLike } from '../../service/route';
 
 export const AssemblyLoader = async () => {
 
@@ -30,7 +32,23 @@ export const AssemblyLoader = async () => {
 
 export default function Assembly() {
 
-    const { assemblyInfo} = useLoaderData();
+    const { assemblyInfo } = useLoaderData();
+
+    const userId = JSON.parse(localStorage.getItem('user'))?.id;
+
+    const [assemblyLike, setAssemblyLike] = useState(false);
+
+    //Функция оценки
+    function getLike(user_id, assembly_id) {
+        const data = {
+            user_id: user_id,
+            assembly_id: assembly_id
+        };
+
+        assembLike(data)
+            .then(d => setAssemblyLike(d.like))
+            .catch(e => alert('Что-то пошло не так'))
+    }
 
     //Функция перехода на 
     function goComponent(id, type) {
@@ -87,8 +105,15 @@ export default function Assembly() {
                                 }
                             </ul>
                             <div className='assembly-box_footer-box'>
+                                {console.log(data['likes'])}
                                 <p className='assembly-box_footer-box__price'>Итого: {data['price']} Руб.</p>
-                                <button className='assembly-box_footer-box__like-btn'>Понравилось</button>
+                                <button
+                                    onClick={() => getLike(userId, data['assembly_id'])}
+                                    disabled={!localStorage.getItem('jwtToken')}
+                                    className={data['likes'].includes(userId) || assemblyLike ? 'assembly-box_footer-box__like-btn assembly-box_footer-box__like-btn_dislike' : 'assembly-box_footer-box__like-btn assembly-box_footer-box__like-btn_like'}
+                                >
+                                    {data['likes'].includes(userId) || assemblyLike ? 'Разонравилось' : 'Понравилось'}
+                                </button>
                             </div>
                         </div>
                     )

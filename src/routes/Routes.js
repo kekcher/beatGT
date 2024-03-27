@@ -6,6 +6,7 @@ import NotFound from "../pages/not_found/NotFound";
 import { ComponentLoader } from "../pages/pc_component/Component";
 import Assembly from "../pages/assembly/Assembly";
 import { AssemblyLoader } from "../pages/assembly/Assembly";
+import CreateComponent from "../pages/create_pc_component/CreateComponent";
 
 export default function AppRouter() {
 
@@ -15,7 +16,8 @@ export default function AppRouter() {
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/component" element={<Component />} errorElement={<NotFound>Комплектующее не найдено!</NotFound>} loader={ComponentLoader} />
-            <Route path="/assembly" element={<Assembly />} errorElement={<NotFound>Сборка не найдена!</NotFound>} loader={AssemblyLoader}/>
+            <Route path="/assembly" element={<Assembly />} errorElement={<NotFound>Сборка не найдена!</NotFound>} loader={AssemblyLoader} />
+            <Route path="/create_component" element={<CreateComponent />} />
             <Route path="/*" element={<NotFound >Страница не найдена!</NotFound>} />
         </>
     ))

@@ -7,7 +7,7 @@ import AppSvg from '../svg/AppSvg';
 export function FormControlLogin({name, onChange, value, onFocus }) {
     return (
         <div className='form-control__input-box'>
-            <input onFocus={onFocus} value={value}  onChange={onChange} name={name} type='text' placeholder='Введите логин' />
+            <input pattern="[A-Za-z0-9]+" onFocus={onFocus} value={value}  onChange={onChange} name={name} type='text' placeholder='Введите логин' />
             <AppSvg className="form-control__input-box__form-icon" type="login" />
         </div>
     )
