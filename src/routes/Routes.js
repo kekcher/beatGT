@@ -7,12 +7,13 @@ import { ComponentLoader } from "../pages/pc_component/Component";
 import Assembly from "../pages/assembly/Assembly";
 import { AssemblyLoader } from "../pages/assembly/Assembly";
 import CreateComponent from "../pages/create_pc_component/CreateComponent";
+import Home from "../pages/home/Home";
 
 export default function AppRouter() {
 
     const router = createBrowserRouter(createRoutesFromElements(
         <>
-            <Route index path="/home" element={<button>ffaf</button>} />
+            <Route index path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/component" element={<Component />} errorElement={<NotFound>Комплектующее не найдено!</NotFound>} loader={ComponentLoader} />

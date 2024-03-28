@@ -23,3 +23,7 @@ export function postComponent(type = '', row = {}) {
 export function assembLike(data){
     return BeatGTApi.post('/assembly_like/', JSON.stringify(data))
 }
+
+export function getStatsCount(){
+    return BeatGTApi.get('/count_stats');
+}
