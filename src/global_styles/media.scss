@@ -143,6 +143,63 @@
         }
     }
 
+    .create-component-box {
+        padding: 20px 30px;
+
+        &_component-items-list {
+            margin: 10px 0 50px 0;
+
+            &_item-box {
+                @include flex-column-center-center;
+                margin-top: 10px;
+
+                &__label {
+                    text-align: center;
+                }
+
+                &_input-box {
+                    margin-left: 0;
+                    width: 90%;
+                    height: 35px;
+
+                    &__input {
+                        padding-left: 10px;
+                    }
+
+                    &__icon {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                &__note {
+                    text-align: center;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        &__logo {
+            width: 50px;
+            height: 50px;
+            margin-top: 5px;
+        }
+    }
+
+    .create-component-btn-box {
+        &__create-btn {
+            height: 40px;
+        }
+
+        &__error {
+            text-align: center;
+        }
+    }
+
+    .create-component-back-btn {
+        padding: 10px;
+    }
+
 }
 
 @media screen and (min-width: 320px) and (max-width: 540px) {
@@ -285,6 +342,63 @@
                 padding: 10px;
             }
         }
+    }
+
+    .create-component-box {
+        padding: 25px 35px;
+
+        &_component-items-list {
+            margin: 15px 0 55px 0;
+
+            &_item-box {
+                @include flex-column-center-center;
+                margin-top: 15px;
+
+                &__label {
+                    text-align: center;
+                }
+
+                &_input-box {
+                    margin-left: 0;
+                    width: 80%;
+                    height: 40px;
+
+                    &__input {
+                        padding-left: 10px;
+                    }
+
+                    &__icon {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                &__note {
+                    text-align: center;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        &__logo {
+            width: 80px;
+            height: 80px;
+            margin-top: 5px;
+        }
+    }
+
+    .create-component-btn-box {
+        &__create-btn {
+            height: 45px;
+        }
+
+        &__error {
+            text-align: center;
+        }
+    }
+
+    .create-component-back-btn {
+        padding: 15px;
     }
 
 }
@@ -435,6 +549,63 @@
                 padding: 15px;
             }
         }
+    }
+
+    .create-component-box {
+        padding: 30px 40px;
+
+        &_component-items-list {
+            margin: 20px 0 60px 0;
+
+            &_item-box {
+                @include flex-column-center-center;
+                margin-top: 20px;
+
+                &__label {
+                    text-align: center;
+                }
+
+                &_input-box {
+                    margin-left: 0;
+                    width: 70%;
+                    height: 50px;
+
+                    &__input {
+                        padding-left: 15px;
+                    }
+
+                    &__icon {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+
+                &__note {
+                    text-align: center;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        &__logo {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+        }
+    }
+
+    .create-component-btn-box {
+        &__create-btn {
+            height: 50px;
+        }
+
+        &__error {
+            text-align: center;
+        }
+    }
+
+    .create-component-back-btn {
+        padding: 15px;
     }
 
 }
@@ -589,6 +760,62 @@
             }
         }
     }
+
+    .create-component-box {
+        padding: 20px 30px;
+
+        &_component-items-list {
+            margin: 15px 0 55px 0;
+
+            &_item-box {
+                @include flex-row-none-center;
+                margin-top: 20px;
+
+                &__label {
+                    white-space: nowrap;
+                }
+
+                &_input-box {
+                    margin-left: 5px;
+                    width: 40%;
+                    height: 40px;
+
+                    &__input {
+                        padding-left: 15px;
+                    }
+
+                    &__icon {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                &__note {
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        &__logo {
+            width: 100px;
+            height: 100px;
+            margin-top: 0;
+        }
+    }
+
+    .create-component-btn-box {
+        &__create-btn {
+            height: 50px;
+        }
+
+        &__error {
+            text-align: center;
+        }
+    }
+
+    .create-component-back-btn {
+        padding: 15px;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -735,6 +962,62 @@
                 padding: 20px;
             }
         }
+    }
+
+    .create-component-box {
+        padding: 40px 50px;
+
+        &_component-items-list {
+            margin: 20px 0 60px 0;
+
+            &_item-box {
+                @include flex-row-none-center;
+                margin-top: 20px;
+
+                &__label {
+                    white-space: nowrap;
+                }
+
+                &_input-box {
+                    margin-left: 5px;
+                    width: 30%;
+                    height: 50px;
+
+                    &__input {
+                        padding-left: 20px;
+                    }
+
+                    &__icon {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+
+                &__note {
+                    margin-left: 2px;
+                }
+            }
+        }
+
+        &__logo {
+            width: 100px;
+            height: 100px;
+            margin-top: 0;
+        }
+    }
+
+    .create-component-btn-box {
+        &__create-btn {
+            height: 50px;
+        }
+
+        &__error {
+            margin-top: 5px;
+        }
+    }
+
+    .create-component-back-btn {
+        padding: 20px;
     }
 
 }
