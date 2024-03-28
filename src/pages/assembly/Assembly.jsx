@@ -12,7 +12,7 @@ import { assembly } from '../../constants'
 
 import { GetAssembly } from '../../service/route';
 
-import { AssemblyComponent } from './components/assembly_components';
+import { AssemblyComponent, LikeBtn } from './components/assembly_components';
 
 import { assembLike } from '../../service/route';
 
@@ -107,13 +107,7 @@ export default function Assembly() {
                             <div className='assembly-box_footer-box'>
                                 {console.log(data['likes'])}
                                 <p className='assembly-box_footer-box__price'>Итого: {data['price']} Руб.</p>
-                                <button
-                                    onClick={() => getLike(userId, data['assembly_id'])}
-                                    disabled={!localStorage.getItem('jwtToken')}
-                                    className={data['likes'].includes(userId) || assemblyLike ? 'assembly-box_footer-box__like-btn assembly-box_footer-box__like-btn_dislike' : 'assembly-box_footer-box__like-btn assembly-box_footer-box__like-btn_like'}
-                                >
-                                    {data['likes'].includes(userId) || assemblyLike ? 'Разонравилось' : 'Понравилось'}
-                                </button>
+                                <LikeBtn assembId={data['assembly_id']} likes={data['likes']}/>
                             </div>
                         </div>
                     )
